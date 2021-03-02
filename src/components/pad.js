@@ -1,22 +1,22 @@
 import Button from './button'
-import VerifyButton from './verify-button'
+import ActionButton from './action-button'
 
-import { clearNumber, sendNumber, setNumber } from '../actions/actions'
-import { useDispatch } from 'react-redux'
+import { clearNumber, sendNumber, setNumber, resetGame } from '../actions/actions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const PadComponent = () => {
+  const { rest } = useSelector(state => state)
+
   const dispatch = useDispatch()
   const handleClick = (value) => {
     dispatch(setNumber({ number: value }))
   }
 
-  const handleVerify = () => {
-    dispatch(sendNumber())
-  }
+  const handleVerify = () => { dispatch(sendNumber()) }
 
-  const handleClear = () => {
-    dispatch(clearNumber())
-  }
+  const handleClear = () => { dispatch(clearNumber()) }
+
+  const handleReset = () => { dispatch(resetGame()) }
 
   const buttons = []
   for (let index = 9; index >= 0; index--) {
@@ -25,9 +25,14 @@ const PadComponent = () => {
 
   return (
     <div className='row num-pad'>
-      {buttons.map(button => button)}
-      <VerifyButton key='-1' value='Verify' verify={handleVerify} />
-      <VerifyButton key='-1' value='Clear' verify={handleClear} />
+      {rest > 0 && (
+        <>
+          {buttons.map(button => button)}
+          <ActionButton key='-1' value='Verify' verify={handleVerify} />
+          <ActionButton key='-2' value='Clear' verify={handleClear} />
+        </>
+      )}
+      {rest === 0 && (<ActionButton key='-3' value='Reset' verify={handleReset} />)}
     </div>
   )
 }

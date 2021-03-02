@@ -1,4 +1,4 @@
-const VerifyButtonComponent = (props) => {
+const ActionButtonComponent = (props) => {
   const { verify, value } = props
 
   return (
@@ -8,4 +8,4 @@ const VerifyButtonComponent = (props) => {
   )
 }
 
-export default VerifyButtonComponent
+export default ActionButtonComponent
