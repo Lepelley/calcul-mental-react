@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import calcul from './reducers/calcul'
+import reducer from './reducers/index'
 
 import App from './App'
 
@@ -11,7 +11,7 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 
-const store = createStore(calcul)
+const store = createStore(reducer)
 
 render(
   <React.StrictMode>

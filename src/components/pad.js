@@ -3,13 +3,9 @@ import ActionButton from './action-button'
 
 import { clearNumber, sendNumber, setNumber } from '../actions/actions'
 
-import { useDispatch, useSelector } from 'react-redux'
-
-import { Redirect } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 const PadComponent = () => {
-  const { rest } = useSelector(state => state)
-
   const dispatch = useDispatch()
   const handleClick = (value) => {
     dispatch(setNumber({ number: value }))
@@ -26,15 +22,11 @@ const PadComponent = () => {
 
   return (
     <div className='row num-pad'>
-      {rest > 0 && (
-        <>
-          {buttons.map(button => button)}
-          <ActionButton key='-1' value='V' title='Verify' verify={handleVerify} />
-          <ActionButton key='-2' value='C' title='Clear' verify={handleClear} />
-        </>
-      )}
-
-      {rest === 0 && (<Redirect to='/scoreboard' />)}
+      <>
+        {buttons.map(button => button)}
+        <ActionButton key='-1' value='V' title='Verify' verify={handleVerify} />
+        <ActionButton key='-2' value='C' title='Clear' verify={handleClear} />
+      </>
     </div>
   )
 }

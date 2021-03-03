@@ -9,7 +9,7 @@ import { resetGame } from '../actions/actions'
 import { Redirect } from 'react-router-dom'
 
 const ScoreboardPage = () => {
-  const { score, rest } = useSelector(state => state)
+  const { score, rest } = useSelector(state => state.calcul)
 
   const dispatch = useDispatch()
 
