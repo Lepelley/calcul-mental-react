@@ -1,8 +1,11 @@
 import Button from './button'
 import ActionButton from './action-button'
 
-import { clearNumber, sendNumber, setNumber, resetGame } from '../actions/actions'
+import { clearNumber, sendNumber, setNumber } from '../actions/actions'
+
 import { useDispatch, useSelector } from 'react-redux'
+
+import { Redirect } from 'react-router-dom'
 
 const PadComponent = () => {
   const { rest } = useSelector(state => state)
@@ -16,8 +19,6 @@ const PadComponent = () => {
 
   const handleClear = () => { dispatch(clearNumber()) }
 
-  const handleReset = () => { dispatch(resetGame()) }
-
   const buttons = []
   for (let index = 9; index >= 0; index--) {
     buttons.push(<Button key={index} value={index} sendNumber={handleClick} />)
@@ -28,11 +29,12 @@ const PadComponent = () => {
       {rest > 0 && (
         <>
           {buttons.map(button => button)}
-          <ActionButton key='-1' value='Verify' verify={handleVerify} />
-          <ActionButton key='-2' value='Clear' verify={handleClear} />
+          <ActionButton key='-1' value='V' title='Verify' verify={handleVerify} />
+          <ActionButton key='-2' value='C' title='Clear' verify={handleClear} />
         </>
       )}
-      {rest === 0 && (<ActionButton key='-3' value='Reset' verify={handleReset} />)}
+
+      {rest === 0 && (<Redirect to='/scoreboard' />)}
     </div>
   )
 }

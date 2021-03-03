@@ -1,19 +1,42 @@
-import Pad from './components/pad'
-import Message from './components/message'
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
+import Game from './pages/Game'
+import Scoreboard from './pages/Scoreboard'
+import Home from './pages/Home'
 
 const App = () => {
-  const { number, messages, score, rest } = useSelector(state => state)
-
   return (
-    <main className='container'>
-      <Pad />
-      <span>Score : {score} </span>
-      <span>Restants : {rest}</span>
-      <Message message={number} />
-      {messages.map((message, index) => <Message key={index} message={message} />)}
-    </main>
+    <BrowserRouter>
+      <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+        <Link to='/' className='navbar-brand'>Calcul</Link>
+
+        <button className='navbar-toggler' type='button'>
+          <span className='navbar-toggler-icon' />
+        </button>
+
+        <div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
+          <div className='navbar-nav'>
+            <Link to='/' className='nav-link'>Home</Link>
+            <Link to='/game' className='nav-link'>Game</Link>
+            <Link to='/scoreboard' className='nav-link'>Scoreboard</Link>
+          </div>
+        </div>
+      </nav>
+
+      <main className='container mt-2'>
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/game'>
+            <Game />
+          </Route>
+          <Route path='/scoreboard'>
+            <Scoreboard />
+          </Route>
+        </Switch>
+      </main>
+    </BrowserRouter>
   )
 }
 

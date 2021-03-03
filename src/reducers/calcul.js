@@ -1,4 +1,4 @@
-import { SEND_NUMBER, SET_NUMBER, CLEAR_NUMBER, RESET_GAME } from '../constants/action-type'
+import { SEND_NUMBER, SET_NUMBER, CLEAR_NUMBER, RESET_GAME, NUMBER_QUESTIONS } from '../constants/action-type'
 import findMultiply from '../utils/multiplications'
 
 const multiply = findMultiply()
@@ -7,7 +7,7 @@ const stateInit = {
   values: [],
   number: '',
   multiply: multiply,
-  rest: 20,
+  rest: NUMBER_QUESTIONS,
   messages: [
     `${multiply.a} x ${multiply.b} = ?`,
     'Vous avez 20 multiplications à résoudre !'
