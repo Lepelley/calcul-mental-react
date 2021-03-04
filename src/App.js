@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 import Game from './pages/Game'
 import Scoreboard from './pages/Scoreboard'
 import Home from './pages/Home'
+import Feedbacks from './pages/Feedback'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Link to='/' className='nav-link'>Home</Link>
             <Link to='/game' className='nav-link'>Game</Link>
             <Link to='/scoreboard' className='nav-link'>Scoreboard</Link>
+            <Link to='/feedbacks' className='nav-link'>Feedbacks</Link>
           </div>
         </div>
       </nav>
@@ -33,6 +35,9 @@ const App = () => {
           </Route>
           <Route path='/scoreboard'>
             <Scoreboard />
+          </Route>
+          <Route path='/feedbacks'>
+            <Feedbacks />
           </Route>
         </Switch>
       </main>
