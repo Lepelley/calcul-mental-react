@@ -4,6 +4,8 @@ import ActionButton from '../components/action-button'
 
 import { clearFeedbacks } from '../actions/actions'
 
+import { FirebaseDatabaseNode } from '@react-firebase/database'
+
 const FeedbackPage = () => {
   const { feedbacks } = useSelector(state => state.feedback)
   const dispatch = useDispatch()
@@ -33,6 +35,14 @@ const FeedbackPage = () => {
 
       <ul>
         {feedbackElements.map(feedback => feedback)}
+      </ul>
+
+      <ul>
+      <FirebaseDatabaseNode path='scores/scores'>
+          {data => {
+            return data.value ? data.value.map(score => `<li>${score.score}</li>`) : ''
+          }}
+      </FirebaseDatabaseNode>
       </ul>
     </>
   )
